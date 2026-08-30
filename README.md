@@ -127,7 +127,7 @@ go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@latest
 ```
 
 > [!WARNING]
-> **On Windows, install from source — this is the supported path.** Windows source builds and CI/runtime tests remain supported, but official Windows binary distribution and Scoop are unavailable. Windows installation and upgrades require Go 1.25.10+ and fail closed to source-install guidance; they never download an unsigned Gentle AI executable or execute a remote update script.
+> **On Windows, install from source — this is the supported path.** Windows is a fully tested platform — the complete suite runs on its CI lane — but official Windows binary distribution and Scoop are unavailable. Windows installation and upgrades require Go 1.25.10+ and fail closed to source-install guidance; they never download an unsigned Gentle AI executable or execute a remote update script.
 >
 > **Known discrepancy — unresolved.** The `v2.5.0` prereleases publish a `gentle-ai_<version>_windows_amd64.exe` asset, while the [signing policy](docs/release-signing.md) still records Windows executables as omitted pending the Authenticode gate. Until that is reconciled, treat that `.exe` as unverified and use `go install` on Windows.
 
@@ -308,10 +308,22 @@ Why this exists: previously, approval destroyed its own authority and returned a
 
 Now the final step returns an operation called `review.acknowledge-approved` carrying an exact one-time token. Only running that exact invocation closes the review and releases its artifacts. This is handled by your agent, not typed by you, but it explains two behaviors you may notice:
 
-- **Restarting status is safe.** Asking for status again replays the same operation, arguments, token and revision — it does not start a new review.
+- **Re-entering a review is safe.** Asking for status again returns the same operation, arguments, token and revision — it does not start a new review.
 - **A stale or repeated acknowledgement is refused** and leaves nothing behind: no receipt, no delivery authority, no partial state.
 
 If a host decodes the acknowledgement but never runs it, the review stays approved and cannot be closed — by design, rather than silently vanishing.
+
+### The review hands back its own next command
+
+Re-entering a frozen review used to be described in prose, and the prose did not match what the CLI would accept — an operator hit that dead end in `v2.5.0-rc.2` within a day.
+
+**Since `v2.5.0-rc.3`, the protocol carries that knowledge instead of the prose.** A negotiated START returns a `gentle-ai.review-integration.start/v4` envelope whose `next_transition` contains the complete command that re-enters the transaction. Your agent runs it verbatim rather than reconstructing it.
+
+The practical rule, and the one worth knowing even if you never read an envelope: **the agent should run the command the provider returned, never one assembled from a description of it.** You can check which protocol version your build speaks with:
+
+```bash
+gentle-ai review capabilities --contract gentle-ai.review-integration/v2
+```
 
 ### The line that matters
 
@@ -319,11 +331,15 @@ If a host decodes the acknowledgement but never runs it, the review stays approv
 
 ### Turning it on and off
 
+From the command line:
+
 ```bash
 gentle-ai review mode status  --cwd .   # read-only; changes nothing
 gentle-ai review mode enable --scope global --cwd .
 gentle-ai review mode disable --cwd .
 ```
+
+Or from the interactive TUI: run `gentle-ai` and open **Receipt-Driven Development**, which offers the same global controls.
 
 Rules worth knowing:
 
@@ -331,6 +347,7 @@ Rules worth knowing:
 - **Off always wins.** Any global or clone-local disabled source turns review off.
 - A clone can opt out with `--scope clone`, but **cannot force review on**. `--scope global` is the only way in.
 - Enabling applies to **future** candidates only. Declining a single review prompt does not change the mode.
+- `--scope global` works from any directory, including one that is not a Git repository. A workspace that is not versioned yet gets a local Git bootstrap before its first review, rather than a refusal.
 
 <details>
 <summary><strong>How the review lifecycle works internally</strong></summary>
@@ -414,7 +431,7 @@ There are three channels. `@latest` is the one you want unless you have a reason
 | Channel | Current | Install |
 | --- | --- | --- |
 | **Stable** | [`v2.4.0`](https://github.com/Gentleman-Programming/gentle-ai/releases/tag/v2.4.0) | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@latest` |
-| **Prerelease** | [`v2.5.0-rc.2`](https://github.com/Gentleman-Programming/gentle-ai/releases/tag/v2.5.0-rc.2) | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@v2.5.0-rc.2` |
+| **Prerelease** | [`v2.5.0-rc.3`](https://github.com/Gentleman-Programming/gentle-ai/releases/tag/v2.5.0-rc.3) | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@v2.5.0-rc.3` |
 | **Development** | `main` | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@main` |
 
 Verify with `gentle-ai version` after any of them.
@@ -590,6 +607,7 @@ gentle-ai doctor              # Run ecosystem health diagnostics
 gentle-ai version             # Print version
 gentle-ai skill-registry refresh
 gentle-ai review mode <enable|disable|status>
+gentle-ai review capabilities --contract gentle-ai.review-integration/v2
 ```
 
 Run `gentle-ai help` for the complete surface, including SDD orchestration and review lifecycle subcommands.
