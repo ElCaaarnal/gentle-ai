@@ -1,6 +1,6 @@
 # Release signing and key rotation
 
-Gentle AI releases only when the protected `release` environment provides a real Minisign credential whose public key matches the trust anchors embedded in the binary. An unset, malformed, placeholder, or isolated test key stops both the updater and release workflow.
+Gentle AI™ releases only when the protected `release` environment provides a real Minisign credential whose public key matches the trust anchors embedded in the binary. An unset, malformed, placeholder, or isolated test key stops both the updater and release workflow.
 
 ## User verification
 

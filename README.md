@@ -2,7 +2,7 @@
 
 <img width="3276" height="1280" alt="Gentle-AI neon rose banner" src="docs/assets/brand/gentle-ai-banner.png" />
 
-<h1>Gentle-AI</h1>
+<h1>Gentle-AI™</h1>
 
 <p><strong>Turn the AI coding agent you already use into a configured engineering environment.</strong></p>
 
@@ -46,7 +46,7 @@ Gentle-AI installs a set of **components**. You pick them individually, or take 
 
 | Component | What it gives your agent | Essential? |
 | --- | --- | --- |
-| **Engram** | Persistent memory across sessions — decisions, bug fixes, and context survive restarts | Recommended |
+| **Engram™** | Persistent memory across sessions — decisions, bug fixes, and context survive restarts | Recommended |
 | **Skills** | A curated library of coding skills the agent loads when the task matches | Recommended |
 | **Persona** | A teaching-oriented voice (Gentleman or neutral), or your own custom persona | Optional |
 | **SDD** | Spec-Driven Development — a planning workflow for substantial features | Optional |
@@ -645,4 +645,4 @@ This project exists because of the community. See [CONTRIBUTORS.md](CONTRIBUTORS
 <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License: MIT"></a>
 </div>
 
-> **Trademark notice:** The Gentle AI names and logos are trademarks of Alan Buscaglia. The MIT License applies to the code; it does not permit implying endorsement or official affiliation. See [TRADEMARKS.md](TRADEMARKS.md).
+> **Trademark notice:** The Gentle AI™ and Engram™ names and logos are trademarks of Alan Buscaglia. Both marks are used throughout this document; the symbol appears on the first prominent mention of each, and this notice covers the rest. The MIT License applies to the code; it does not permit implying endorsement or official affiliation. See [TRADEMARKS.md](TRADEMARKS.md).
