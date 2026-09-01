@@ -53,7 +53,7 @@ Gentle-AI installs a set of **components**. You pick them individually, or take 
 | **Context7** | An MCP server that fetches live framework and library documentation | Optional |
 | **Permissions** | Security-first guardrails, including a deny list for `~/.ssh`, `.env`, and credential files | Optional |
 | **GGA** | Gentleman Guardian Angel — an AI provider switcher | Optional |
-| **Theme** | The Gentleman Kanagawa theme overlay | Optional |
+| **Theme** | Selectable Gentleman and Gentleman-Cute themes for Claude Code and OpenCode | Optional |
 
 Presets bundle these for you:
 
@@ -128,8 +128,6 @@ go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@latest
 
 > [!WARNING]
 > **On Windows, install from source — this is the supported path.** Windows is a fully tested platform — the complete suite runs on its CI lane — but official Windows binary distribution and Scoop are unavailable. Windows installation and upgrades require Go 1.25.10+ and fail closed to source-install guidance; they never download an unsigned Gentle AI executable or execute a remote update script.
->
-> **Known discrepancy — unresolved.** The `v2.5.0` prereleases publish a `gentle-ai_<version>_windows_amd64.exe` asset, while the [signing policy](docs/release-signing.md) still records Windows executables as omitted pending the Authenticode gate. Until that is reconciled, treat that `.exe` as unverified and use `go install` on Windows.
 
 **Expected result:** `gentle-ai version` prints a version number.
 
@@ -165,10 +163,11 @@ Two optional commands give the agent richer project context:
 
 | Command | What it does | When to re-run |
 | --- | --- | --- |
-| `/sdd-init` | Detects your stack and testing capabilities; activates Strict TDD Mode if your project supports it | When the project adds or removes test frameworks, or the first time in a new project |
+| `/gentle-sdd-init` (Claude Code) | Detects your stack and testing capabilities; activates Strict TDD Mode if your project supports it | When the project adds or removes test frameworks, or the first time in a new project |
+| `/sdd-init` (other runtimes) | Runs the same project initialization through the runtime's SDD command | Same as above |
 | `gentle-ai skill-registry refresh` | Scans installed skills and project conventions, then builds the registry | After installing or removing skills, or the first time in a new project |
 
-Neither is required. The SDD orchestrator runs `/sdd-init` automatically when it finds no context, and startup hooks normally keep the skill registry fresh for agents that support them (Codex, Claude Code, OpenCode, and Pi via `gentle-pi`). If you start Pi with `pi -ns`, startup hooks are skipped — refresh the registry manually when you need updated project rules.
+Neither initialization command is required. SDD orchestration runs the runtime-appropriate command when it finds no project context, and startup hooks normally keep the skill registry fresh for agents that support them (Codex, Claude Code, OpenCode, and Pi via `gentle-pi`). If you start Pi with `pi -ns`, startup hooks are skipped — refresh the registry manually when you need updated project rules.
 
 ---
 
@@ -219,7 +218,11 @@ SDD artifacts can live in three places, chosen at install time:
 
 The store you declare is authoritative: phase agents are handed the locations to read and never guess where artifacts live.
 
+Immediately after Explore, you can select **SDD Research** when the proposal needs external evidence. This optional lane requires an exact documentation or open-web grant and records auditable evidence with source mappings. Once selected, Research must finish before Propose.
+
 When Strict TDD is active, SDD apply works test-first, and SDD verify audits the RED/GREEN evidence before it passes.
+
+SDD status v2 runtime state is independent from review. No review binding, receipt or gate controls SDD Archive or delivery; ordinary repository policy remains authoritative for delivery.
 
 <details>
 <summary><strong>How the SDD cycle works internally</strong></summary>
@@ -227,7 +230,10 @@ When Strict TDD is active, SDD apply works test-first, and SDD verify audits the
 ```mermaid
 flowchart TD
     A["User: sdd-new / sdd-explore<br/>(or sdd-ff to fast-forward planning)"] --> B["Explore<br/>investigate codebase and approaches"]
-    B --> C["Propose<br/>intent · scope · approach"]
+    B --> BR{"External research<br/>selected?"}
+    BR -->|"yes"| BX["Research<br/>auditable external evidence<br/>exact grant · source mappings"]
+    BR -->|"no"| C["Propose<br/>intent · scope · approach"]
+    BX --> C
     C --> D{"User approves<br/>the proposal?"}
     D -->|"no"| B
     D -->|"yes"| E["Spec<br/>requirements + scenarios"]
@@ -235,23 +241,23 @@ flowchart TD
     F --> G["Tasks<br/>ordered deliverable checklist"]
     G --> H["Apply<br/>sub-agent implements against specs<br/>(sdd-attempt acquire/settle · CAS · budgets)"]
     H --> Q["Verify<br/>independent verification against<br/>spec · design · tasks"]
-        Q -->|"passes"| I["Optional RDD review offer"]
-        Q -->|"fails"| H
+    Q -->|"passes"| R["Archive<br/>merge delta-specs · close the cycle"]
+    Q -->|"fails"| H
+    Q -.->|"optional, informational"| I["RDD review offer"]
 
     subgraph RDD["RDD — same machine as the organic route"]
         I --> J{"Risk"}
         J -->|"low"| K["Structural readback"]
-        J -->|"standard / high"| L["1 lens or 4R + consent"]
+        J -->|"medium / high"| L["1 lens or 4R + consent"]
         L --> M{"Severe findings?"}
         M -->|"yes"| N["One bounded correction<br/>+ fix validator"]
         M -->|"no"| O["Review outcome: approved<br/>(informational)"]
         K --> O
         N -->|"validates"| O
         N -->|"fails"| P["Escalated → recover"]
-        O --> AK["review.acknowledge-approved<br/>only this burns the authority"]
+        O --> AK["review.acknowledge-approved<br/>only the exact acknowledgement<br/>burns/closes the lineage"]
     end
 
-    AK --> R["Archive<br/>merge delta-specs · close the cycle"]
     R --> S["Ordinary repository policy"]
     S --> T["Commit → Push → PR"]
 
@@ -283,7 +289,7 @@ You need six terms. Each builds on the last:
 | --- | --- |
 | **Candidate** | The exact set of bytes being reviewed — one specific change, nothing else |
 | **Freeze** | Locking those bytes at the start, so reviewers and the code can't drift apart mid-review |
-| **Lens** | One focused reviewer perspective. The four canonical ones are **Risk**, **Readability**, **Reliability** and **Resilience** ("4R") |
+| **Lens** | One focused reviewer perspective. The four canonical ones are **Risk**, **Resilience**, **Readability** and **Reliability** ("4R") |
 | **Correction** | At most **one** bounded round of fixes for severe findings — there is no loop-until-clean |
 | **Outcome** | The result of the review. It is **informational**: it records evidence, it does not authorize or block anything |
 | **Acknowledgement** | The explicit confirmation that your agent *received* the outcome. Until it runs, the review is approved but not finished |
@@ -295,29 +301,29 @@ Once implementation finishes, RDD freezes the candidate and picks review effort 
 | Risk (frozen at start) | Review performed |
 | --- | --- |
 | Low | Structural readback — 0 lenses, silent. A passive documentation change is approved right at the start |
-| Standard | 1 focus lens, with consent |
+| Medium | 1 focus lens, with consent |
 | High | All four lenses (4R), with consent and a cost forecast |
 
 If reviewers find severe findings caused by the candidate itself, RDD permits one bounded correction, then a read-only validator checks it. Pre-existing findings become follow-ups, not blockers.
 
 ### Approval waits to be acknowledged
 
-**Since `v2.5.0-rc.2`, a review does not end when it is approved.** It ends when your agent confirms it received that approval.
+**In stable `v2.5.0`, a review does not end when it is approved.** It ends when your agent confirms it received that approval.
 
 Why this exists: previously, approval destroyed its own authority and returned a response. If that response never reached the host — a crash, a dropped connection — the review was over and nothing said so.
 
-Now the final step returns an operation called `review.acknowledge-approved` carrying an exact one-time token. Only running that exact invocation closes the review and releases its artifacts. This is handled by your agent, not typed by you, but it explains two behaviors you may notice:
+Final approval creates an exact `review.acknowledge-approved` operation carrying a one-time token. Only running that exact acknowledgement burns/closes the lineage. This is handled by your agent, not typed by you, but it explains two behaviors you may notice:
 
 - **Re-entering a review is safe.** Asking for status again returns the same operation, arguments, token and revision — it does not start a new review.
-- **A stale or repeated acknowledgement is refused** and leaves nothing behind: no receipt, no delivery authority, no partial state.
+- **A stale or repeated acknowledgement is refused** and leaves no successor lineage or partial state.
 
 If a host decodes the acknowledgement but never runs it, the review stays approved and cannot be closed — by design, rather than silently vanishing.
 
 ### The review hands back its own next command
 
-Re-entering a frozen review used to be described in prose, and the prose did not match what the CLI would accept — an operator hit that dead end in `v2.5.0-rc.2` within a day.
+Re-entering a frozen review used to be described in prose, which could drift from what the CLI accepted.
 
-**Since `v2.5.0-rc.3`, the protocol carries that knowledge instead of the prose.** A negotiated START returns a `gentle-ai.review-integration.start/v4` envelope whose `next_transition` contains the complete command that re-enters the transaction. Your agent runs it verbatim rather than reconstructing it.
+**Stable `v2.5.0` carries that knowledge in the protocol instead of prose.** A negotiated START returns a `gentle-ai.review-integration.start/v4` envelope whose `next_transition` contains the complete command that re-enters the transaction. Your agent runs it verbatim rather than reconstructing it.
 
 The practical rule, and the one worth knowing even if you never read an envelope: **the agent should run the command the provider returned, never one assembled from a description of it.** You can check which protocol version your build speaks with:
 
@@ -366,8 +372,8 @@ flowchart TD
     F -->|"on (explicitly enabled)"| G["review status --next-transition<br/>(provider-owned negotiated route)"]
     G --> H{"Risk frozen<br/>at START"}
     H -->|"low"| I["Structural readback<br/>0 lenses · silent"]
-    H -->|"standard"| J["1 focus lens<br/>+ consent"]
-    H -->|"high"| K["Canonical 4R + consent + forecast<br/>Risk · Readability · Reliability · Resilience"]
+    H -->|"medium"| J["1 focus lens<br/>+ consent"]
+    H -->|"high"| K["Canonical 4R + consent + forecast<br/>Risk · Resilience · Readability · Reliability"]
     J --> L["Reviewers inspect the immutable candidate<br/>(review inspect-candidate)"]
     K --> L
     L --> M{"Severe candidate-caused<br/>findings?"}
@@ -380,7 +386,7 @@ flowchart TD
     P -->|"no access to the diff"| R["Inconclusive: attempt not<br/>consumed, capture again"]
     R --> P
     Q --> S["review recover<br/>(authorized successor)"]
-    N --> AK["review.acknowledge-approved<br/>exact one-time token · only this burns"]
+    N --> AK["review.acknowledge-approved<br/>exact one-time token · only this<br/>burns/closes the lineage"]
     AK --> T["Ordinary repository policy"]
     T --> U["Commit → Push → PR"]
     Z --> U
@@ -391,7 +397,7 @@ flowchart TD
     style U fill:#2D4F67,color:#fff
 ```
 
-Native commands own repository identity, candidate scope, lifecycle transitions, receipts and safe continuations. When scope changes or an operation is interrupted, use provider-owned status and recovery — never infer authority from agent narration.
+Native review transitions own repository identity, candidate scope, lifecycle transitions and safe continuations. When scope changes or an operation is interrupted, use provider-owned status and recovery — never infer authority from agent narration. Compact receipts, `FINALIZE` and delivery gates are retired. Historical compatibility reads may remain, but they never regain authority; `review validate` and gate compatibility surfaces are unmanaged and never govern delivery.
 
 Technical references: [Organic RDD architecture](docs/architecture/organic-rdd.md), [Review Authority Threat Model](docs/review-authority-threat-model.md), [Review Integration Contract](docs/review-integration.md).
 
@@ -426,12 +432,11 @@ Restoring a snapshot: [Backup & Rollback Guide](docs/rollback.md).
 <details>
 <summary><strong>Release channels and version policy</strong></summary>
 
-There are three channels. `@latest` is the one you want unless you have a reason.
+There are two current channels. Install `@latest` unless you are deliberately testing unreleased development code.
 
 | Channel | Current | Install |
 | --- | --- | --- |
-| **Stable** | [`v2.4.0`](https://github.com/Gentleman-Programming/gentle-ai/releases/tag/v2.4.0) | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@latest` |
-| **Prerelease** | [`v2.5.0-rc.3`](https://github.com/Gentleman-Programming/gentle-ai/releases/tag/v2.5.0-rc.3) | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@v2.5.0-rc.3` |
+| **Stable** | [`v2.5.0`](https://github.com/Gentleman-Programming/gentle-ai/releases/tag/v2.5.0) | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@latest` |
 | **Development** | `main` | `go install github.com/gentleman-programming/gentle-ai/v2/cmd/gentle-ai@main` |
 
 Verify with `gentle-ai version` after any of them.
@@ -440,7 +445,7 @@ Use `@main` only to test changes that are not part of a release. The managed ins
 
 **About the `/v2` suffix:** Go requires it for major version 2 and above. Releases before `v2.0.0` use the unsuffixed import path.
 
-**The two channels publish different artifacts.** Stable releases ship `.tar.gz` archives for macOS and Linux with a Minisign-signed `checksums.txt`. The `v2.5.0` prereleases ship unarchived platform binaries with a plain `SHA256SUMS.txt`, so the Minisign verification below applies to the stable channel only.
+**Stable `v2.5.0` publishes six archives under a signed checksum manifest:** four platform `.tar.gz` archives for macOS and Linux (amd64 and arm64), the provider-contract archive, and the release-provenance archive. `checksums.txt` covers all six and is authenticated by `checksums.txt.minisig`.
 
 Receipt-Driven Development became the supported stable path in `v2.2.0`; the negotiated public review contract was published in `v2.1.6`.
 
@@ -507,7 +512,7 @@ Workspace scope covers agent-scoped files — system prompts, skills, SDD agents
 <details>
 <summary><strong>Verifying a release signature manually</strong></summary>
 
-**Stable channel — Minisign.** Official macOS and Linux release archives require an authenticated `checksums.txt`. The built-in upgrader verifies its Minisign signature, its exact `Gentleman-Programming/gentle-ai` + release-tag binding, and the selected archive checksum **before** replacing the installed binary. Release archives are capped at **128 MiB**, including chunked or unknown-length responses. Missing, oversized, malformed, untrusted or placeholder key material fails closed without changing the installed binary.
+**Stable channel — Minisign.** Stable `v2.5.0` publishes six archives: four macOS/Linux platform archives, the provider-contract archive, and the release-provenance archive. All six are covered by an authenticated `checksums.txt`. The built-in upgrader verifies its Minisign signature, its exact `Gentleman-Programming/gentle-ai` + release-tag binding, and the selected platform archive checksum **before** replacing the installed binary. Release archives are capped at **128 MiB**, including chunked or unknown-length responses. Missing, oversized, malformed, untrusted or placeholder key material fails closed without changing the installed binary.
 
 To verify yourself, obtain the production public-key payload and fingerprint from a maintainer-controlled channel, then download `checksums.txt` and `checksums.txt.minisig` from the same release:
 
@@ -519,16 +524,16 @@ sha256sum --check --strict --ignore-missing checksums.txt
 
 Do not bootstrap trust from a public key downloaded only beside the artifacts it verifies. See [Release signing and key rotation](docs/release-signing.md).
 
-**`v2.5.0` prereleases — SHA256 only.** These publish unarchived platform binaries covered by a plain `SHA256SUMS.txt`, with no Minisign signature. Verify them with `sha256sum --check --ignore-missing SHA256SUMS.txt`.
-
-**Provider contract bundle.** Releases since `v2.5.0-rc.2` also publish `gentle-ai-review-provider-contract-1.1.0.tar.gz`. Verify and inspect it from the tagged source:
+**Provider contract bundle.** Stable `v2.5.0` publishes `gentle-ai-review-provider-contract-1.1.0.tar.gz`. Verify and inspect it from the tagged source:
 
 ```bash
 go run ./internal/providercontractbundlecmd verify --archive <bundle>
 tar -tzf <bundle>
 ```
 
-**Windows — policy vs. published assets.** The stated policy is that Windows archives and Scoop publication remain omitted until publicly trusted RSA Authenticode signing is provisioned (prefer managed OIDC with Azure Artifact Signing), both amd64 and arm64 executables are signed before archive and checksum generation, and release verification fails if either executable is unsigned. The `v2.5.0` prereleases nonetheless publish an unsigned `windows_amd64.exe`; that gap is open and unresolved — see the warning in [Step 2](#step-2--install-the-binary).
+**Release provenance bundle.** `gentle-ai-release-provenance-v1.tar.gz` carries the stable release provenance materials and is covered by the same signed checksums.
+
+> **Transparency note:** The `v2.5.0` post-publication expected-assets check rejected the newly added provenance archive before running verification. The release notes report that signature and checksum verification was completed out of band.
 
 </details>
 
@@ -543,7 +548,7 @@ git diff --cached
 gentle-ai review start --projection staged
 ```
 
-The staged projection freezes the **complete existing index**, including paths staged earlier. It starts a review but does not itself issue an approved receipt; unstaged and untracked worktree content is excluded. The default `workspace` projection reviews the complete workspace, and an existing authority is never auto-converted between projections.
+The staged projection freezes the **complete existing index**, including paths staged earlier. It starts a review but does not itself produce an approved outcome or authorize delivery; unstaged and untracked worktree content is excluded. The default `workspace` projection reviews the complete workspace, and an existing authority is never auto-converted between projections.
 
 Details: [review authority threat model](docs/review-authority-threat-model.md).
 
