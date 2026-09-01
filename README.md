@@ -208,6 +208,8 @@ When the work is ambiguous enough that durable written artifacts — a proposal,
 
 You don't learn the phases. Say *"use SDD"* and the agent starts the workflow, or accept it when the agent offers. You review and approve at the decision points.
 
+In Claude Code, every SDD command uses the `/gentle-sdd-*` prefix — for example, `/gentle-sdd-new` and `/gentle-sdd-continue`. Other runtimes keep the bare `/sdd-*` names.
+
 SDD artifacts can live in three places, chosen at install time:
 
 | Store | Best for |
@@ -229,7 +231,7 @@ SDD status v2 runtime state is independent from review. No review binding, recei
 
 ```mermaid
 flowchart TD
-    A["User: sdd-new / sdd-explore<br/>(or sdd-ff to fast-forward planning)"] --> B["Explore<br/>investigate codebase and approaches"]
+    A["User: sdd-new / sdd-explore<br/>(gentle-sdd-* in Claude Code)"] --> B["Explore<br/>investigate codebase and approaches"]
     B --> BR{"External research<br/>selected?"}
     BR -->|"yes"| BX["Research<br/>auditable external evidence<br/>exact grant · source mappings"]
     BR -->|"no"| C["Propose<br/>intent · scope · approach"]
@@ -532,8 +534,6 @@ tar -tzf <bundle>
 ```
 
 **Release provenance bundle.** `gentle-ai-release-provenance-v1.tar.gz` carries the stable release provenance materials and is covered by the same signed checksums.
-
-> **Transparency note:** The `v2.5.0` post-publication expected-assets check rejected the newly added provenance archive before running verification. The release notes report that signature and checksum verification was completed out of band.
 
 </details>
 
