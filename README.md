@@ -33,7 +33,7 @@ gentle-ai
 <a href="https://gentlemanprogramming.com/"><img src="https://img.shields.io/badge/Website-1A1218?style=for-the-badge&labelColor=1A1218" alt="Website"></a>
 </p>
 
-<img width="900" alt="A terminal proving memory survives a session. First command tells Claude Code that Postgres was chosen over MongoDB for multi-row transactions and asks it to save the decision; the screen clears; a second, entirely new session with no history is asked which database was chosen and answers correctly, citing the transaction requirement" src="docs/assets/brand/memory-demo.gif" />
+<img width="900" alt="The OpenCode terminal interface proving memory survives a session. A first session is asked which technologies suit a todo-list app and is then told the work will continue later, which persists the session to Engram; the session is closed back to a shell prompt; a second session with no history is asked where the work left off and reconstructs it from memory, listing the stack that was chosen and the next step" src="docs/assets/brand/memory-demo.gif" />
 
 </div>
 
