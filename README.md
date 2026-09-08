@@ -33,7 +33,7 @@ gentle-ai
 <a href="https://gentlemanprogramming.com/"><img src="https://img.shields.io/badge/Website-1A1218?style=for-the-badge&labelColor=1A1218" alt="Website"></a>
 </p>
 
-<img width="900" alt="The Gentle-AI terminal interface: selecting Claude Code from the agent list, choosing the Gentleman persona and the Dev Stack + Polish preset, reviewing the install plan, then a fifteen-step install completing and reporting one configured agent and nine installed components" src="docs/assets/brand/tui-demo.gif" />
+<img width="900" alt="A terminal proving memory survives a session. First command tells Claude Code that Postgres was chosen over MongoDB for multi-row transactions and asks it to save the decision; the screen clears; a second, entirely new session with no history is asked which database was chosen and answers correctly, citing the transaction requirement" src="docs/assets/brand/memory-demo.gif" />
 
 </div>
 
@@ -94,6 +94,10 @@ It forgets your decisions between sessions. It has no opinion about how your pro
 </picture>
 
 <sub>**[→ Full feature matrix](docs/agents.md)**</sub>
+
+<br/>
+
+<img width="900" alt="The Gentle-AI terminal interface: selecting Claude Code from the agent list, choosing the Gentleman persona and the Dev Stack + Polish preset, reviewing the install plan, then a fifteen-step install completing and reporting one configured agent and nine installed components" src="docs/assets/brand/tui-demo.gif" />
 
 <br/>
 
