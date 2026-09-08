@@ -20,8 +20,8 @@
   </defs>
   <rect x="0" y="13.25" width="1200" height="1.5" fill="url(#rule)"/>
   <g filter="url(#softglow)">
-    <circle cx="600.0" cy="14.0" r="4.5" fill="#F095C8"/>
-    <circle cx="566.0" cy="14.0" r="2" fill="#F095C8" opacity="0.6"/>
-    <circle cx="634.0" cy="14.0" r="2" fill="#F095C8" opacity="0.6"/>
+    <circle cx="600" cy="14" r="4.5" fill="#F095C8"/>
+    <circle cx="566" cy="14" r="2" fill="#F095C8" opacity="0.6"/>
+    <circle cx="634" cy="14" r="2" fill="#F095C8" opacity="0.6"/>
   </g>
 </svg>

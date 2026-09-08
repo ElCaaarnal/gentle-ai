@@ -19,9 +19,9 @@
     </filter>
   </defs>
 <rect width="1200" height="550" fill="#1A1218"/>
-<g transform="translate(16.0,16)">
-<rect x="1" y="1" width="569.0" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
-<path d="M19 1 H552.0 A18 18 0 0 1 570.0 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+<g transform="translate(16,16)">
+<rect x="1" y="1" width="569" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
+<path d="M19 1 H552 A18 18 0 0 1 570 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <path d="M1 19 A18 18 0 0 1 19 1" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <g transform="translate(42,44)" fill="none" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
       <path d="M9 21 L29 11 M9 21 L29 31" stroke="#D7A0B8"/>
@@ -34,9 +34,9 @@
 <text x="44" y="163" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17.5" fill="#A78E9B">restarts. Your agent stops starting</text>
 <text x="44" y="192" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17.5" fill="#A78E9B">from zero every morning.</text>
 </g>
-<g transform="translate(613.0,16)">
-<rect x="1" y="1" width="569.0" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
-<path d="M19 1 H552.0 A18 18 0 0 1 570.0 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+<g transform="translate(613,16)">
+<rect x="1" y="1" width="569" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
+<path d="M19 1 H552 A18 18 0 0 1 570 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <path d="M1 19 A18 18 0 0 1 19 1" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <g transform="translate(42,44)" fill="none" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
       <path d="M5 21 H16 C22 21 22 9 28 9 H36" stroke="#F095C8"/>
@@ -50,9 +50,9 @@
 <text x="44" y="163" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17.5" fill="#A78E9B">feature? It plans first. Size alone never</text>
 <text x="44" y="192" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17.5" fill="#A78E9B">forces ceremony.</text>
 </g>
-<g transform="translate(16.0,288)">
-<rect x="1" y="1" width="569.0" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
-<path d="M19 1 H552.0 A18 18 0 0 1 570.0 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+<g transform="translate(16,288)">
+<rect x="1" y="1" width="569" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
+<path d="M19 1 H552 A18 18 0 0 1 570 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <path d="M1 19 A18 18 0 0 1 19 1" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <g transform="translate(42,44)" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)">
       <path d="M21 4 L35 10 V22 C35 30 28 36 21 39 C14 36 7 30 7 22 V10 Z" stroke="#D7A0B8"/>
@@ -63,12 +63,12 @@
 <text x="44" y="163" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17.5" fill="#A78E9B">and derives evidence independently.</text>
 <text x="44" y="192" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17.5" fill="#A78E9B">No more taking its word for it.</text>
 </g>
-<g transform="translate(613.0,288)">
-<rect x="1" y="1" width="569.0" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
-<path d="M19 1 H552.0 A18 18 0 0 1 570.0 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
+<g transform="translate(613,288)">
+<rect x="1" y="1" width="569" height="244" rx="18" fill="url(#cardfill)" stroke="#342230" stroke-width="1.5"/>
+<path d="M19 1 H552 A18 18 0 0 1 570 19" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <path d="M1 19 A18 18 0 0 1 19 1" fill="none" stroke="#F095C8" stroke-width="2.5" opacity="0.7" stroke-linecap="round"/>
 <g transform="translate(42,44)" fill="none" stroke-width="2" stroke-linecap="round" filter="url(#glow)">
-      <path d="M21.0 13.0 L21.0 6.0" stroke="#D7A0B8"/><circle cx="21.0" cy="3.0" r="2.6" fill="#F095C8" stroke="none"/><path d="M27.9 17.0 L34.0 13.5" stroke="#D7A0B8"/><circle cx="36.6" cy="12.0" r="2.6" fill="#F095C8" stroke="none"/><path d="M27.9 25.0 L34.0 28.5" stroke="#D7A0B8"/><circle cx="36.6" cy="30.0" r="2.6" fill="#F095C8" stroke="none"/><path d="M21.0 29.0 L21.0 36.0" stroke="#D7A0B8"/><circle cx="21.0" cy="39.0" r="2.6" fill="#F095C8" stroke="none"/><path d="M14.1 25.0 L8.0 28.5" stroke="#D7A0B8"/><circle cx="5.4" cy="30.0" r="2.6" fill="#F095C8" stroke="none"/><path d="M14.1 17.0 L8.0 13.5" stroke="#D7A0B8"/><circle cx="5.4" cy="12.0" r="2.6" fill="#F095C8" stroke="none"/>
+      <path d="M21 13 L21 6" stroke="#D7A0B8"/><circle cx="21" cy="3" r="2.6" fill="#F095C8" stroke="none"/><path d="M27.9 17 L34 13.5" stroke="#D7A0B8"/><circle cx="36.6" cy="12" r="2.6" fill="#F095C8" stroke="none"/><path d="M27.9 25 L34 28.5" stroke="#D7A0B8"/><circle cx="36.6" cy="30" r="2.6" fill="#F095C8" stroke="none"/><path d="M21 29 L21 36" stroke="#D7A0B8"/><circle cx="21" cy="39" r="2.6" fill="#F095C8" stroke="none"/><path d="M14.1 25 L8 28.5" stroke="#D7A0B8"/><circle cx="5.4" cy="30" r="2.6" fill="#F095C8" stroke="none"/><path d="M14.1 17 L8 13.5" stroke="#D7A0B8"/><circle cx="5.4" cy="12" r="2.6" fill="#F095C8" stroke="none"/>
       <circle cx="21" cy="21" r="6.5" stroke="#F095C8"/>
     </g>
 <text x="104" y="74" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#F6EFF3" filter="url(#softglow)">It speaks your agent's language</text>

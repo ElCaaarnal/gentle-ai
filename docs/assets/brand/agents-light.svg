@@ -11,57 +11,57 @@
     </linearGradient>
   </defs>
 <rect width="1200" height="372" fill="#FFFFFF"/>
-<text x="600.0" y="44" text-anchor="middle" font-family="'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="3.2" font-weight="700" fill="#B93A78">FULL DELEGATION</text>
-<text x="600.0" y="67" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#96808C">hands work to focused sub-agents</text>
-<rect x="107.0" y="90" width="148" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="124.0" cy="111.0" r="3" fill="#B93A78"/>
-<text x="189.0" y="117.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Claude Code</text>
-<rect x="267.0" y="90" width="120" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="284.0" cy="111.0" r="3" fill="#B93A78"/>
-<text x="335.0" y="117.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">OpenCode</text>
-<rect x="399.0" y="90" width="101" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="416.0" cy="111.0" r="3" fill="#B93A78"/>
-<text x="457.5" y="117.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Cursor</text>
-<rect x="512.0" y="90" width="91" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="529.0" cy="111.0" r="3" fill="#B93A78"/>
-<text x="565.5" y="117.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Codex</text>
-<rect x="615.0" y="90" width="139" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="632.0" cy="111.0" r="3" fill="#B93A78"/>
-<text x="692.5" y="117.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Gemini CLI</text>
-<rect x="766.0" y="90" width="186" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="783.0" cy="111.0" r="3" fill="#B93A78"/>
-<text x="867.0" y="117.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">VS Code Copilot</text>
-<rect x="964.0" y="90" width="129" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="981.0" cy="111.0" r="3" fill="#B93A78"/>
-<text x="1036.5" y="117.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Kilo Code</text>
-<rect x="225.0" y="145" width="129" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="242.0" cy="166.0" r="3" fill="#B93A78"/>
-<text x="297.5" y="172.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Kimi Code</text>
-<rect x="366.0" y="145" width="120" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="383.0" cy="166.0" r="3" fill="#B93A78"/>
-<text x="434.0" y="172.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Kiro IDE</text>
-<rect x="498.0" y="145" width="129" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="515.0" cy="166.0" r="3" fill="#B93A78"/>
-<text x="570.5" y="172.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Qwen Code</text>
-<rect x="639.0" y="145" width="148" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="656.0" cy="166.0" r="3" fill="#B93A78"/>
-<text x="721.0" y="172.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Antigravity</text>
-<rect x="799.0" y="145" width="63" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="816.0" cy="166.0" r="3" fill="#B93A78"/>
-<text x="838.5" y="172.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Pi</text>
-<rect x="874.0" y="145" width="101" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="891.0" cy="166.0" r="3" fill="#B93A78"/>
-<text x="932.5" y="172.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Hermes</text>
-<rect x="340.0" y="212" width="520" height="1.5" fill="url(#rule)"/>
-<text x="600.0" y="258" text-anchor="middle" font-family="'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="3.2" font-weight="700" fill="#C97FA6">SOLO-AGENT</text>
-<text x="600.0" y="281" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#96808C">runs everything in one conversation</text>
-<rect x="427.0" y="304" width="120" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="444.0" cy="325.0" r="3" fill="#C97FA6"/>
-<text x="495.0" y="331.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Windsurf</text>
-<rect x="559.0" y="304" width="120" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="576.0" cy="325.0" r="3" fill="#C97FA6"/>
-<text x="627.0" y="331.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">OpenClaw</text>
-<rect x="691.0" y="304" width="82" height="42" rx="21.0" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
-<circle cx="708.0" cy="325.0" r="3" fill="#C97FA6"/>
-<text x="740.0" y="331.0" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Trae</text>
+<text x="600" y="44" text-anchor="middle" font-family="'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="3.2" font-weight="700" fill="#B93A78">FULL DELEGATION</text>
+<text x="600" y="67" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#96808C">hands work to focused sub-agents</text>
+<rect x="107" y="90" width="148" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="124" cy="111" r="3" fill="#B93A78"/>
+<text x="189" y="117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Claude Code</text>
+<rect x="267" y="90" width="120" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="284" cy="111" r="3" fill="#B93A78"/>
+<text x="335" y="117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">OpenCode</text>
+<rect x="399" y="90" width="101" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="416" cy="111" r="3" fill="#B93A78"/>
+<text x="457.5" y="117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Cursor</text>
+<rect x="512" y="90" width="91" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="529" cy="111" r="3" fill="#B93A78"/>
+<text x="565.5" y="117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Codex</text>
+<rect x="615" y="90" width="139" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="632" cy="111" r="3" fill="#B93A78"/>
+<text x="692.5" y="117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Gemini CLI</text>
+<rect x="766" y="90" width="186" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="783" cy="111" r="3" fill="#B93A78"/>
+<text x="867" y="117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">VS Code Copilot</text>
+<rect x="964" y="90" width="129" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="981" cy="111" r="3" fill="#B93A78"/>
+<text x="1036.5" y="117" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Kilo Code</text>
+<rect x="225" y="145" width="129" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="242" cy="166" r="3" fill="#B93A78"/>
+<text x="297.5" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Kimi Code</text>
+<rect x="366" y="145" width="120" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="383" cy="166" r="3" fill="#B93A78"/>
+<text x="434" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Kiro IDE</text>
+<rect x="498" y="145" width="129" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="515" cy="166" r="3" fill="#B93A78"/>
+<text x="570.5" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Qwen Code</text>
+<rect x="639" y="145" width="148" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="656" cy="166" r="3" fill="#B93A78"/>
+<text x="721" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Antigravity</text>
+<rect x="799" y="145" width="63" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="816" cy="166" r="3" fill="#B93A78"/>
+<text x="838.5" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Pi</text>
+<rect x="874" y="145" width="101" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="891" cy="166" r="3" fill="#B93A78"/>
+<text x="932.5" y="172" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Hermes</text>
+<rect x="340" y="212" width="520" height="1.5" fill="url(#rule)"/>
+<text x="600" y="258" text-anchor="middle" font-family="'SF Mono',SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace" font-size="13" letter-spacing="3.2" font-weight="700" fill="#C97FA6">SOLO-AGENT</text>
+<text x="600" y="281" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="14" fill="#96808C">runs everything in one conversation</text>
+<rect x="427" y="304" width="120" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="444" cy="325" r="3" fill="#C97FA6"/>
+<text x="495" y="331" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Windsurf</text>
+<rect x="559" y="304" width="120" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="576" cy="325" r="3" fill="#C97FA6"/>
+<text x="627" y="331" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">OpenClaw</text>
+<rect x="691" y="304" width="82" height="42" rx="21" fill="#FCF5F9" stroke="#EBD5E2" stroke-width="1.5"/>
+<circle cx="708" cy="325" r="3" fill="#C97FA6"/>
+<text x="740" y="331" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="17" fill="#1A1218">Trae</text>
 </svg>
