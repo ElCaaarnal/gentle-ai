@@ -70,3 +70,44 @@ The atomic lifecycle is rendered only for Claude Code, OpenCode, Codex, and Pi. 
 ## Historical compatibility
 
 Older contracts and historical artifacts may be read through explicit manual compatibility operations. They do not participate in the ordinary atomic lifecycle, restore burned authority, or decide delivery.
+
+## Lifecycle diagram
+
+The organic route, with RDD entering at the end over the frozen candidate:
+
+```mermaid
+flowchart TD
+    A["User requests a change<br/>(Claude Code · OpenCode · Codex...)"] --> B{"Implementation<br/>route"}
+    B -->|"decide/verify<br/>1–3 files"| C["Direct inline"]
+    B -->|"4+ file exploration<br/>or 2+ non-trivial writes"| D["Delegated direct<br/>(one bounded worker)"]
+    C --> E["Implementation + tests"]
+    D --> E
+    E --> F{"RDD enabled?<br/>(user-owned, opt-in)"}
+    F -->|"off (default)"| Z["Ordinary delivery<br/>reports disabled/unmanaged"]
+    F -->|"on (explicitly enabled)"| G["review status --next-transition<br/>(provider-owned negotiated route)"]
+    G --> H{"Risk frozen<br/>at START"}
+    H -->|"low"| I["Structural readback<br/>0 lenses · silent"]
+    H -->|"medium"| J["1 focus lens<br/>+ consent"]
+    H -->|"high"| K["Canonical 4R + consent + forecast<br/>Risk · Resilience · Readability · Reliability"]
+    J --> L["Reviewers inspect the immutable candidate<br/>(review inspect-candidate)"]
+    K --> L
+    L --> M{"Severe candidate-caused<br/>findings?"}
+    I --> N["Review outcome: approved<br/>(informational)"]
+    M -->|"no"| N
+    M -->|"yes"| O["One bounded correction<br/>(frozen budget)"]
+    O --> P["Fix validator<br/>(read-only, immutable trees)"]
+    P -->|"passes"| N
+    P -->|"fails with evidence"| Q["Escalated"]
+    P -->|"no access to the diff"| R["Inconclusive: attempt not<br/>consumed, capture again"]
+    R --> P
+    Q --> S["review recover<br/>(authorized successor)"]
+    N --> AK["review.acknowledge-approved<br/>exact one-time token · only this<br/>burns/closes the lineage"]
+    AK --> T["Ordinary repository policy"]
+    T --> U["Commit → Push → PR"]
+    Z --> U
+
+    style N fill:#2D4F67,color:#fff
+    style AK fill:#2D4F67,color:#fff
+    style Q fill:#B8860B,color:#fff
+    style U fill:#2D4F67,color:#fff
+```

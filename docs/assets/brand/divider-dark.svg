@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="28" viewBox="0 0 1200 28" role="presentation">
+  <defs>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#F095C8" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#F095C8" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#F095C8" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="cardfill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#241822"/>
+      <stop offset="100%" stop-color="#1A1218"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3.2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="1.4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect x="0" y="13.25" width="1200" height="1.5" fill="url(#rule)"/>
+  <g filter="url(#softglow)">
+    <circle cx="600.0" cy="14.0" r="4.5" fill="#F095C8"/>
+    <circle cx="566.0" cy="14.0" r="2" fill="#F095C8" opacity="0.6"/>
+    <circle cx="634.0" cy="14.0" r="2" fill="#F095C8" opacity="0.6"/>
+  </g>
+</svg>
