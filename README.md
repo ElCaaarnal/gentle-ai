@@ -19,14 +19,6 @@ Persistent memory. Real process. Evidence instead of promises.</p>
 <img src="https://img.shields.io/badge/macOS%20%C2%B7%20Linux%20%C2%B7%20Windows-D7A0B8?style=for-the-badge&labelColor=1A1218" alt="Platform">
 </p>
 
-<!--
-  DEMO SLOT — drop a TUI recording at docs/assets/brand/tui-demo.gif and
-  uncomment the line below. Suggested capture: launching `gentle-ai`,
-  selecting agents, picking a preset, and the final `gentle-ai doctor` report.
-
-  <img width="900" alt="Gentle-AI interactive TUI" src="docs/assets/brand/tui-demo.gif" />
--->
-
 <br/>
 
 ```bash
@@ -40,6 +32,8 @@ gentle-ai
 <a href="#documentation"><img src="https://img.shields.io/badge/Docs-1A1218?style=for-the-badge&labelColor=1A1218" alt="Docs"></a>
 <a href="https://gentlemanprogramming.com/"><img src="https://img.shields.io/badge/Website-1A1218?style=for-the-badge&labelColor=1A1218" alt="Website"></a>
 </p>
+
+<img width="900" alt="The Gentle-AI terminal interface: selecting Claude Code from the agent list, choosing the Gentleman persona and the Dev Stack + Polish preset, reviewing the install plan, then a fifteen-step install completing and reporting one configured agent and nine installed components" src="docs/assets/brand/tui-demo.gif" />
 
 </div>
 
