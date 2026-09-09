@@ -1,0 +1,9 @@
+{
+  "name": "todo-app-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "verify": "node --test"
+  }
+}

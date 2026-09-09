@@ -53,6 +53,10 @@ gentle-ai
 
 It forgets your decisions between sessions. It has no opinion about how your project works. And when it says *"done, tests pass"*, your only way to check is reading every line yourself.
 
+<img width="900" alt="Pi creates a todo progress list, delegates exploration and a bounded implementation for a completed-count feature, then delegates verification that runs npm run verify" src="docs/assets/brand/feature-demo-pi.gif" />
+
+<sub>Pi tracks the small change, delegates the focused work, and shows the verification command.</sub>
+
 </div>
 
 <div align="center">

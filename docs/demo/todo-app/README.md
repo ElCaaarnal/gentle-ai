@@ -1,7 +1,11 @@
-# todo-app
+# Todo app demo fixture
 
-An empty stand-in project used only to record the README demo. It exists so the
-recording runs somewhere that looks like the start of real work rather than an
-arbitrary directory.
+This dependency-free Node ESM fixture is copied to `/tmp` before the Pi feature
+recording. It starts with two rendered todos and intentionally has no completed
+count, so the recording can make one small, verifiable change.
 
-Nothing here is part of Gentle-AI, and nothing here is imported by the product.
+```bash
+npm run verify
+```
+
+Nothing here is part of Gentle-AI or imported by the product.
