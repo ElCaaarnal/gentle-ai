@@ -20,7 +20,7 @@ Goal: align CLI reference, telemetry and architecture docs with the code on main
 - [x] T1 S1-S3 CLI reference (usage.md, non-interactive.md) — route: delegated writer (musvsicy-2-mtt1) — commit: 4d21e214
 - [x] T2 S4-S5,S7 Behavior docs (trigger-rules.md, telemetry.md, review-integration.md) — route: delegated writer (musvvd6f-3-a1y2) + parent wording fix — commit: efc65e3f
 - [x] T3 S6,S8 Architecture and banners (architecture.md, 11 banners) — route: delegated writer (musvxjt5-4-3dum) + parent wording fix — commit: 3cfcafa3
-- [ ] T4 Verify all S#, RDD review (sync fork main first), PR saying "issue 4556" in plain text, #4556 comment — route: verifier + parent — commit: n/a
+- [ ] T4 Verify all S# (done), RDD review (approved, burned), PR saying "issue 4556" in plain text, #4556 comment — route: verifier + parent — commit: n/a
 
 ## Log
 
@@ -29,4 +29,7 @@ Goal: align CLI reference, telemetry and architecture docs with the code on main
 - L4 (evidence, T1): background-subagent flags have no fixed default (flag > env > saved on/off > auto; auto→off non-interactive, opencode_background.go:41-89, pi_background.go:58-111); --channel accepts stable|beta|nightly(alias beta); codegraph row links components.md, uninstall opencode-plugin has no doc (—). Parent confirmed --strict-tdd rejection is in v4.0.0 sync.go:227.
 - L5 (evidence, T2): parent reworded S4 — high risk takes a task out of the small path (routing.go Task Size criterion 2) and adds a verifier; feature document and writer still come only from a failed resume test. S7 semantics checked against review_assess.go:209-241. RDD START deferred to T4 by the parent (candidate incomplete; fork main 0dda8895 behind upstream 5d449e52); not a user disposition.
 - L6 (evidence, T3): 20 component dirs listed (matches ls internal/components/*/); agent lists point to agents.md (17 agents); no v3.7.0 left in docs/ outside audits/releases. Parent dropped "independent of SDD" from the reviewassets entry. Follow-up (out of S6): other internal/ packages (reviewtransaction, telemetry, storage, doctor, ...) still absent from the tree.
+- L7 (evidence, T4): verifier musvzzfg-6-3g29: S1-S8 PASS at 564b540f; 6 focused go test commands ok; links/anchors valid; 0 v3.7.0; diff 18 files +98/-23. S7 fixed by parent in 564b540f (500 UTF-8 bytes).
+- L8 (user): granted RDD consent. Lineage review-60d0491544609209, target sha256:1acc25324c75a3fc847754bae0042c57c89e6b0ba032f479e6103015f1b9c131, base-ref 5d449e52 committed-only (fork sync not needed), risk medium, one lens review-reliability. Claude-code collect input rejected by gentle_review_capture (capture-binding-rejected). User chose: continue in a Pi session with `gentle_review status` on this lineage.
+- L9 (evidence): this session is Pi; `gentle_review` was reachable through codemode. Facade STATUS returned a Pi materialize binding; review-reliability approved; acknowledge-approved burned authority (consumed revision sha256:c6e78bad7f22dd587f5a65336cae9338411bfd304902569980cc414040496e0e).
 - L3 (evidence): explorer musvh21t-1-kvvj report; seed 2 resolved by parent (`git tag --contains 3f5d1e73` → v4.0.0).
