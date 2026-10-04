@@ -102,10 +102,13 @@ func TestComponentTreesMatchPackages(t *testing.T) {
 
 	// docs/codebase/repository-map.md is an ownership table that names only
 	// selected component packages, so every package it names must exist.
-	pathRef := regexp.MustCompile("`internal/components/([^/`]+)/")
+	pathRef := regexp.MustCompile(`internal/components/([a-z0-9_]+)/`)
 	var referenced []string
 	for _, match := range pathRef.FindAllStringSubmatch(read("docs/codebase/repository-map.md"), -1) {
 		referenced = append(referenced, match[1])
+	}
+	if len(referenced) == 0 {
+		t.Fatal("docs/codebase/repository-map.md: no internal/components/<package>/ references found; update the parser if the format changed")
 	}
 	if _, invented := diffPackages(referenced, actual, false); len(invented) > 0 {
 		t.Errorf("docs/codebase/repository-map.md names packages missing from internal/components\ninvented: %v", invented)
