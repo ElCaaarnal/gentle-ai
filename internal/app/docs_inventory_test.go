@@ -36,10 +36,11 @@ func componentPackages(t *testing.T) map[string]bool {
 
 // architectureComponentTree returns the packages listed under `  components/`
 // in the docs/architecture.md tree: the leading `name/` fields of each deeper
-// indented line, stopping at the next sibling of components/.
+// indented line, stopping at the next sibling of components/. Names are taken
+// whole, whatever their spelling, so an invented entry is reported instead of
+// skipped; a line that does not start with a `name/` field fails the test.
 func architectureComponentTree(t *testing.T, content string) []string {
 	t.Helper()
-	dirField := regexp.MustCompile(`^[a-z][a-z0-9_]*/$`)
 	var names []string
 	inTree := false
 	for _, line := range strings.Split(content, "\n") {
@@ -50,8 +51,13 @@ func architectureComponentTree(t *testing.T, content string) []string {
 		if !strings.HasPrefix(line, "    ") {
 			break
 		}
-		for _, field := range strings.Fields(line) {
-			if !dirField.MatchString(field) {
+		fields := strings.Fields(line)
+		if len(fields) == 0 || !strings.HasSuffix(fields[0], "/") {
+			t.Errorf("docs/architecture.md components tree: unrecognized entry %q", strings.TrimSpace(line))
+			continue
+		}
+		for _, field := range fields {
+			if !strings.HasSuffix(field, "/") {
 				break
 			}
 			names = append(names, strings.TrimSuffix(field, "/"))
@@ -102,16 +108,33 @@ func TestComponentTreesMatchPackages(t *testing.T) {
 
 	// docs/codebase/repository-map.md is an ownership table that names only
 	// selected component packages, so every package it names must exist.
-	pathRef := regexp.MustCompile(`internal/components/([a-z0-9_]+)/`)
-	var referenced []string
-	for _, match := range pathRef.FindAllStringSubmatch(read("docs/codebase/repository-map.md"), -1) {
-		referenced = append(referenced, match[1])
-	}
+	referenced := repositoryMapReferences(read("docs/codebase/repository-map.md"))
 	if len(referenced) == 0 {
 		t.Fatal("docs/codebase/repository-map.md: no internal/components/<package>/ references found; update the parser if the format changed")
 	}
 	if _, invented := diffPackages(referenced, actual, false); len(invented) > 0 {
 		t.Errorf("docs/codebase/repository-map.md names packages missing from internal/components\ninvented: %v", invented)
+	}
+}
+
+func TestComponentParsersReportInventedNamesOfAnyShape(t *testing.T) {
+	actual := map[string]bool{"communitytool": true, "engram": true}
+
+	tree := "  components/              Per-component logic\n    engram/  ghost-pkg/\n    Ghost.Pkg/             Invented\n  skillregistry/\n"
+	_, invented := diffPackages(architectureComponentTree(t, tree), actual, true)
+	if got := strings.Join(invented, ","); got != "Ghost.Pkg,ghost-pkg" {
+		t.Fatalf("architecture tree invented = %q, want %q", got, "Ghost.Pkg,ghost-pkg")
+	}
+
+	mapDoc := "| `internal/components/communitytool/` | ok |\n| `internal/components/ghost-pkg/` | x |\n" +
+		"| `internal/components/ghost` | x |\nSee internal/components/engram/README.md and internal/components/Ghost.\n| `internal/components/` | root |\n"
+	refs := repositoryMapReferences(mapDoc)
+	if got := strings.Join(refs, ","); got != "communitytool,ghost-pkg,ghost,engram,Ghost" {
+		t.Fatalf("repositoryMapReferences = %q, want %q", got, "communitytool,ghost-pkg,ghost,engram,Ghost")
+	}
+	_, invented = diffPackages(refs, actual, false)
+	if got := strings.Join(invented, ","); got != "Ghost,ghost,ghost-pkg" {
+		t.Fatalf("repository map invented = %q, want %q", got, "Ghost,ghost,ghost-pkg")
 	}
 }
 
@@ -127,3 +150,20 @@ func TestArchitectureComponentTreeParsesOnlyComponents(t *testing.T) {
 		t.Fatalf("diffPackages missing=%v invented=%v, want [uninstall] [filemerge ghost_pkg]", missing, invented)
 	}
 }
+
+// repositoryMapReferences returns every package name that follows
+// internal/components/ in content, whatever its spelling, so an invented
+// name is reported instead of skipped.
+func repositoryMapReferences(content string) []string {
+	var refs []string
+	for _, match := range componentRef.FindAllStringSubmatch(content, -1) {
+		if name := strings.TrimRight(match[1], "."); name != "" {
+			refs = append(refs, name)
+		}
+	}
+	return refs
+}
+
+// componentRef captures the full path segment after internal/components/, up
+// to whitespace, a slash or Markdown/prose punctuation.
+var componentRef = regexp.MustCompile("internal/components/([^\\s/`'\"()\\[\\]|,;:*<>]+)")
