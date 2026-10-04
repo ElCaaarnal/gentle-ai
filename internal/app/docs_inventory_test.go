@@ -36,7 +36,8 @@ func componentPackages(t *testing.T) map[string]bool {
 
 // architectureComponentTree returns the packages listed under `  components/`
 // in the docs/architecture.md tree: the leading `name/` fields of each deeper
-// indented line, stopping at the next sibling of components/. Names are taken
+// indented line, skipping blank lines and stopping at the next nonblank
+// sibling of components/. Names are taken
 // whole, whatever their spelling, so an invented entry is reported instead of
 // skipped; a line that does not start with a `name/` field fails the test.
 func architectureComponentTree(t *testing.T, content string) []string {
@@ -46,6 +47,9 @@ func architectureComponentTree(t *testing.T, content string) []string {
 	for _, line := range strings.Split(content, "\n") {
 		if !inTree {
 			inTree = strings.HasPrefix(line, "  components/")
+			continue
+		}
+		if strings.TrimSpace(line) == "" {
 			continue
 		}
 		if !strings.HasPrefix(line, "    ") {
@@ -120,10 +124,10 @@ func TestComponentTreesMatchPackages(t *testing.T) {
 func TestComponentParsersReportInventedNamesOfAnyShape(t *testing.T) {
 	actual := map[string]bool{"communitytool": true, "engram": true}
 
-	tree := "  components/              Per-component logic\n    engram/  ghost-pkg/\n    Ghost.Pkg/             Invented\n  skillregistry/\n"
+	tree := "  components/              Per-component logic\n    engram/  ghost-pkg/\n    Ghost.Pkg/             Invented\n\n    ghost/                 After a blank line\n  skillregistry/\n"
 	_, invented := diffPackages(architectureComponentTree(t, tree), actual, true)
-	if got := strings.Join(invented, ","); got != "Ghost.Pkg,ghost-pkg" {
-		t.Fatalf("architecture tree invented = %q, want %q", got, "Ghost.Pkg,ghost-pkg")
+	if got := strings.Join(invented, ","); got != "Ghost.Pkg,ghost,ghost-pkg" {
+		t.Fatalf("architecture tree invented = %q, want %q", got, "Ghost.Pkg,ghost,ghost-pkg")
 	}
 
 	mapDoc := "| `internal/components/communitytool/` | ok |\n| `internal/components/ghost-pkg/` | x |\n" +
