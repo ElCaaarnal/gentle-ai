@@ -18,8 +18,8 @@ Goal: Go-test guards so retired terms and hardcoded inventories cannot drift bac
 
 ## Tasks
 
-- [ ] T1 S1-S4 Retired-term guard (RED test, then clean leftovers) — route: delegated writer — commit: —
-- [ ] T2 S5 PR template checkbox — route: inline — commit: —
+- [x] T1 S1-S4 Retired-term guard (RED test, then clean leftovers) — route: delegated writer (mutr97me-2-8bk7) — commit: 9c8c0368
+- [x] T2 S5 PR template checkbox — route: inline — commit: 40de7ebc
 - [ ] T3 S1-S5 Verify PR 1, RDD review, PR "Refs #5234" — route: verifier + parent — commit: n/a
 - [ ] T4 S6-S9 Inventory drift tests (branch `docs/5234-inventory-drift-guard`) — route: delegated writer — commit: —
 - [ ] T5 S6-S9 Verify PR 2, RDD review, PR "Closes #5234" — route: verifier + parent — commit: n/a
@@ -29,3 +29,5 @@ Goal: Go-test guards so retired terms and hardcoded inventories cannot drift bac
 - L1 (user, 2026-10-04): "Retomo la wave E de la meta-issue #4556 (docs accuracy re-audit). [...] Scope de la wave E, según la tabla de #4556: "Guards: PR template docs checkbox, CI check for retired terms in living docs, generated agent and package inventories""
 - L2 (user): accepted drift tests over generation ("Adelante"); label changed to type:docs; #5234 created and approved ("YA la aprobe, crea la rama y adelante").
 - L3 (evidence): explorer mutqjc3c-1-zswz; existing guard covers 4 files only; `allAgents` has 17 entries (`internal/catalog/agents.go:18`); 20 dirs under `internal/components/`.
+- L4 (evidence, T1): RED listed 7 lines (engram.md:159, gga-powershell-shim.md:71, skill-registry.md:128, testing-agents-deterministically.md:70,71,251, trigger-rules.md:14); GREEN after fixes; `go test ./internal/app/` ok. Historical rule: `> **Historical` callout in first 12 lines (skips organic-rdd-testing-guide.md, release-v0.1.0-checklist.md). Allowlist: one line-level rule `\b(retired|legacy)\b`. Tradeoff accepted by parent: the 4 entry files lost the file-wide no-exception check; a line saying retired/legacy now passes there too. New wording at testing-agents-deterministically.md matches `assertNoSDDArtifacts` (e2e/organicruntime/organic_runtime_test.go:3478).
+- L5 (decision, T2): `skills/branch-pr/SKILL.md:133` keeps its own template copy, which already diverges from the real template; left out of scope.
