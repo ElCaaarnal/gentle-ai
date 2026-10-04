@@ -22,6 +22,10 @@ func readRepoDoc(t *testing.T, name string) string {
 	return string(content)
 }
 
+// tableSeparatorCell matches a Markdown table separator cell, with or without
+// alignment colons (---, :---, ---:, :---:).
+var tableSeparatorCell = regexp.MustCompile(`^:?-{3,}:?$`)
+
 // documentedAgentIDs returns the ID column of the agent table in docs/agents.md.
 func documentedAgentIDs(t *testing.T, content string) []string {
 	t.Helper()
@@ -37,7 +41,7 @@ func documentedAgentIDs(t *testing.T, content string) []string {
 			break
 		}
 		cells := strings.Split(line, "|")
-		if len(cells) < 3 || strings.HasPrefix(strings.TrimSpace(cells[1]), "---") {
+		if len(cells) < 3 || tableSeparatorCell.MatchString(strings.TrimSpace(cells[1])) {
 			continue
 		}
 		ids = append(ids, strings.Trim(strings.TrimSpace(cells[2]), "`"))
@@ -99,7 +103,7 @@ func TestReadmeAgentsBadgeMatchesCatalog(t *testing.T) {
 }
 
 func TestDocumentedAgentIDsParsesOnlyTheAgentTable(t *testing.T) {
-	content := "intro | not a table\n\n| Agent | ID | Integration notes |\n| --- | --- | --- |\n" +
+	content := "intro | not a table\n\n| Agent | ID | Integration notes |\n| :--- | :---: | --- |\n" +
 		"| <a id=\"pi\"></a>Pi | `pi` | Notes with `code` |\n| Codex | `codex` | Notes |\n\n| Other | ID |\n| x | `ghost` |\n"
 	got := strings.Join(documentedAgentIDs(t, content), ",")
 	if got != "pi,codex" {

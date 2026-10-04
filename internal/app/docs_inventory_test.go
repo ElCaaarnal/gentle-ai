@@ -39,7 +39,7 @@ func componentPackages(t *testing.T) map[string]bool {
 // indented line, stopping at the next sibling of components/.
 func architectureComponentTree(t *testing.T, content string) []string {
 	t.Helper()
-	dirField := regexp.MustCompile(`^[a-z][a-z0-9]*/$`)
+	dirField := regexp.MustCompile(`^[a-z][a-z0-9_]*/$`)
 	var names []string
 	inTree := false
 	for _, line := range strings.Split(content, "\n") {
@@ -117,13 +117,13 @@ func TestComponentTreesMatchPackages(t *testing.T) {
 
 func TestArchitectureComponentTreeParsesOnlyComponents(t *testing.T) {
 	content := "internal/\n  catalog/                 Registry (agents, skills/)\n  components/              Per-component logic\n" +
-		"    engram/  skills/\n    filemerge/             Marker-based install/inject merging\n  skillregistry/           Refresh\n    nested/\n"
+		"    engram/  skills/\n    filemerge/             Marker-based install/inject merging\n    ghost_pkg/             Invented\n  skillregistry/           Refresh\n    nested/\n"
 	listed := architectureComponentTree(t, content)
-	if got := strings.Join(listed, ","); got != "engram,skills,filemerge" {
-		t.Fatalf("architectureComponentTree = %q, want %q", got, "engram,skills,filemerge")
+	if got := strings.Join(listed, ","); got != "engram,skills,filemerge,ghost_pkg" {
+		t.Fatalf("architectureComponentTree = %q, want %q", got, "engram,skills,filemerge,ghost_pkg")
 	}
 	missing, invented := diffPackages(listed, map[string]bool{"engram": true, "skills": true, "uninstall": true}, true)
-	if strings.Join(missing, ",") != "uninstall" || strings.Join(invented, ",") != "filemerge" {
-		t.Fatalf("diffPackages missing=%v invented=%v, want [uninstall] [filemerge]", missing, invented)
+	if strings.Join(missing, ",") != "uninstall" || strings.Join(invented, ",") != "filemerge,ghost_pkg" {
+		t.Fatalf("diffPackages missing=%v invented=%v, want [uninstall] [filemerge ghost_pkg]", missing, invented)
 	}
 }
